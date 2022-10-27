@@ -1,28 +1,26 @@
-// const { TINYINT, INTEGER } = require("sequelize/types");
-
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'Genre';
+    let alias = 'Actor';
     let cols = {
         id: {
             type: dataTypes.BIGINT(10).UNSIGNED,
             primaryKey: true,
-            allowNull: false,
             autoIncrement: true
         },
         // created_at: dataTypes.TIMESTAMP,
         // updated_at: dataTypes.TIMESTAMP,
-        name: {
+        first_name: {
             type: dataTypes.STRING(100),
             allowNull: false
         },
-        ranking: {
-            type: dataTypes.BIGINT(10).UNSIGNED,
+        last_name: {
+            type: dataTypes.STRING(100),
             allowNull: false
         },
-        active: {
-            type: dataTypes.BOOLEAN,
+        rating: {
+            type: dataTypes.DECIMAL(3,1),
             allowNull: false
-        }
+        },
+        favorite_movie_id: dataTypes.BIGINT(10).UNSIGNED
     };
     let config = {
         timestamps: true,
@@ -30,11 +28,9 @@ module.exports = (sequelize, dataTypes) => {
         updatedAt: 'updated_at',
         deletedAt: false
     }
-    const Genre = sequelize.define(alias, cols, config);
+    const Actor = sequelize.define(alias, cols, config); 
 
     //Aquí debes realizar lo necesario para crear las relaciones con el modelo (Movie)
-
-    Genre.ass
-
-    return Genre
+ 
+    return Actor
 };

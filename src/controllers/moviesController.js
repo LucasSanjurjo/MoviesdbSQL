@@ -1,8 +1,17 @@
+const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
+const { Op } = require("sequelize");
 
-//Otra forma de llamar a los modelos
+
+//Aqui tienen una forma de llamar a cada uno de los modelos
+// const {Movies,Genres,Actor} = require('../database/models');
+
+//Aquí tienen otra forma de llamar a los modelos creados
 const Movies = db.Movie;
+const Genres = db.Genre;
+const Actors = db.Actor;
+
 
 const moviesController = {
     'list': (req, res) => {
@@ -40,9 +49,10 @@ const moviesController = {
             .then(movies => {
                 res.render('recommendedMovies.ejs', {movies});
             });
-    }, //Aqui debemos modificar y completar lo necesario para trabajar con el CRUD
+    },
+    //Aqui dispongo las rutas para trabajar con el CRUD
     add: function (req, res) {
-        res.render('moviesAdd');   
+        res.render('moviesAdd'); 
     },
     create: function (req, res) {
         Movies.create({
@@ -104,7 +114,6 @@ const moviesController = {
         })
         .catch( error => res.send(error));
     }
-
 }
 
 module.exports = moviesController;
